@@ -7,7 +7,6 @@ import (
 
 type Kilometrs uint
 type Days uint
-type TripeType bool
 type MillionDollars uint
 type KilometersSec uint
 
@@ -16,11 +15,12 @@ const SecInDay = 86_400
 
 type Ticket struct {
 	SpaceLineName string
-	Durations     Days
-	TripType      TripeType
-	Speed         KilometersSec
+	Duration      Days
+	TripType      string
 	Price         MillionDollars
 }
+
+var TripeType = [2]string{"RoundTripe", "OneWay"}
 
 var SpaceStation = [5]string{
 	"SpaceAdventures",
@@ -50,7 +50,24 @@ func DaysSet() Days {
 	return Days(DistanceToMars / uint(SpeedSet()*24*60*60))
 }
 
-func TripTipeSet() int
+func TripeTipeSet() string {
+	return TripeType[rand.Intn(2)]
+}
+
+func (t *Ticket) TicketGeneration() []*Ticket {
+	var a []Ticket
+	for i := 0; i < 10; i++ {
+		t.SpaceLineName = SpaceStation[SortStation()[i]]
+		t.Duration = DaysSet()
+		t.TripType = TripeTipeSet()
+		if t.TripType == TripeType[0] {
+		    t.Price = PriceSet(SpeedSet()) * 2}
+		if t.TripType == TripeType[1] {
+			t.Price = PriceSet(SpeedSet())}
+	}
+}
+
+func PrintTickets
 
 func main() {
 	fmt.Println(DaysSet())
