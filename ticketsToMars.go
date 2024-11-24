@@ -54,21 +54,31 @@ func TripeTipeSet() string {
 	return TripeType[rand.Intn(2)]
 }
 
-func (t *Ticket) TicketGeneration() []*Ticket {
-	var a []Ticket
+func (t Ticket) TicketGeneration() {
 	for i := 0; i < 10; i++ {
 		t.SpaceLineName = SpaceStation[SortStation()[i]]
 		t.Duration = DaysSet()
 		t.TripType = TripeTipeSet()
 		if t.TripType == TripeType[0] {
-		    t.Price = PriceSet(SpeedSet()) * 2}
+			t.Price = PriceSet(SpeedSet()) * 2
+		}
 		if t.TripType == TripeType[1] {
-			t.Price = PriceSet(SpeedSet())}
+			t.Price = PriceSet(SpeedSet())
+		}
+		fmt.Printf("%-15v %4v    %-10v   $%4v\n", t.SpaceLineName,
+			t.Duration, t.TripType, t.Price)
 	}
 }
 
-func PrintTickets
+func PrintTickets() {
+	var t Ticket
+	fmt.Println()
+	fmt.Println("Spaceline         Days  Trip type    Price")
+	fmt.Println("==========================================")
+	t.TicketGeneration()
+	fmt.Println()
+}
 
 func main() {
-	fmt.Println(DaysSet())
+	PrintTickets()
 }
